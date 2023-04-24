@@ -22,6 +22,7 @@
     <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="../assets/css/site.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="../assets/css/style.css" rel="stylesheet">
@@ -43,8 +44,9 @@
                     <li><a class="nav-link nav-link-default scrollto" href="#about">About</a></li>
                     <li><a class="nav-link nav-link-default scrollto" href="#services">Services</a></li>
                     <li><a class="nav-link nav-link-default scrollto" href="#contact">Contact</a></li>
-                    <li><a class="nav-link scrollto nav-link-login" onclick="NavigateTo('Login')">Login</a></li>
-                    <li><a class="nav-link scrollto nav-link-apply">Apply</a></li>
+                    <li><a class="nav-link scrollto nav-link-login" asp-action="Login" asp-controller="Account" id="loginNav">Login</a></li>
+                    <li><a class="nav-link scrollto nav-link-register" asp-action="Register" asp-controller="Account" id="registerNav">Register</a></li>
+                    <li><a class="nav-link scrollto nav-link-apply" asp-action="Apply" asp-controller="Application">Apply</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -145,12 +147,18 @@
 
         function Boot()
         {
-            if(localStorage['currentPage'] == 'Login')
+            if (localStorage['currentPage'] == 'Login' || localStorage['currentPage'] == 'Register' || localStorage['currentPage'] == 'Apply')
             {
                 $(".nav-link-default").hide();
                 $(".footer-area").hide();
                 $("#header").addClass('login-header');
                 $(".footer-area-bottom").css("margin-top","-55px");
+
+                if (localStorage['currentPage'] == 'Login')
+                    $("#loginNav").hide();
+
+                if (localStorage['currentPage'] == 'Register')
+                    $("#registerNav").hide();
             }
             else if (localStorage['currentPage'] == 'Home')
             {

@@ -1,0 +1,82 @@
+﻿.login-btn, .default-btn
+{
+    background: #3EC1D5;
+    color: white;
+}
+
+.login-btn:hover, .default-btn:hover
+{
+    background: #3EC1D5;
+    color: white;
+    opacity: 0.5;
+}
+
+.apply-info-dialog-container
+{
+    margin-top: 30px;
+}
+
+.apply-info-dialog
+{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+.apply-next-btn
+{
+    width:40%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:30px;
+}
+
+.apply-textBox
+{
+    width: 80%;
+}
+
+@media (max-width: 990px)
+{
+    .apply-info-dialog
+    {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 767px)
+{
+    .apply-info-dialog
+    {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+    }
+    .apply-next-btn
+    {
+        margin-top: 0;
+        width:70%;
+    }
+}
+
+@media (max-width: 575px)
+{
+    .apply-next-btn
+    {
+        width:95%;
+        margin-left:auto;
+    }
+    .apply-info-dialog
+    {
+        margin-top: 0px;
+    }
+    .apply-textBox
+    {
+        width: 100%;
+    }
+}

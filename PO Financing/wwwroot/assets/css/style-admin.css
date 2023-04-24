@@ -38,19 +38,6 @@ h6 {
   font-family: "Nunito", sans-serif;
 }
 
-.login-btn
-{
-    background: #3EC1D5;
-    color: white;
-}
-
-.login-btn:hover
-{
-    background: #3EC1D5;
-    color: white;
-    opacity: 0.5;
-}
-
 /*--------------------------------------------------------------
 # Main
 --------------------------------------------------------------*/

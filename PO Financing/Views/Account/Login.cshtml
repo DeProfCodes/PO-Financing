@@ -1,4 +1,9 @@
 ﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+
 <link href="../assets/css/style-admin.css" rel="stylesheet">
 
 <div class="container">
@@ -9,9 +14,8 @@
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <img src="../assets/img/LogoIcon.png" alt="">
-                  
+                <a class="logo d-flex align-items-center w-auto">
+                  <img src="../assets/img/LogoIcon.png" alt="">                  
                   <span class="d-none d-lg-block" style="color:#61B834;">P&E</span><span style="color:dodgerblue; margin-left:7px"> Finance</span>
                 </a>
               </div><!-- End Logo -->
@@ -30,7 +34,6 @@
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Username</label>
                       <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend"></span>
                         <input type="text" name="username" class="form-control" id="yourUsername" required>
                         <div class="invalid-feedback">Please enter your username.</div>
                       </div>
@@ -52,7 +55,7 @@
                         <button class="btn w-100 login-btn" type="submit">Login</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
+                      <p class="small mb-0">Don't have account? <a asp-action="Register">Create an account</a></p>
                     </div>
                   </form>
 
