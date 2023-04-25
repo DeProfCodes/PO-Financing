@@ -15,7 +15,7 @@ namespace PO_Financing.BusinessLogic
         private readonly ApplicationDbContext _dbContext;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
-        
+
         public UserDataManagement(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
             _dbContext = dbContext;
@@ -39,10 +39,34 @@ namespace PO_Financing.BusinessLogic
             await _dbContext.SaveChangesAsync();
 
             var dbUser = await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == userViewModel.Email);
-            
+
             var res = await _userManager.AddPasswordAsync(dbUser, userViewModel.Password);
 
             await _userManager.AddToRoleAsync(dbUser, userViewModel.UserRole);
+
+            return dbUser.Id;
+        }
+
+        public async Task<string> CreateUser(RegisterViewModel registerViewModel)
+        {
+            var user = new ApplicationUser
+            {
+                Firstname = registerViewModel.Firstname,
+                Lastname = registerViewModel.Lastname,
+                PhoneNumber = registerViewModel.PhoneNumber,
+                UserName = registerViewModel.Email,
+                Email = registerViewModel.Email,
+                AccountStatus = AccountStatus.Active
+            };
+
+            _dbContext.Add(user);
+            await _dbContext.SaveChangesAsync();
+
+            var dbUser = await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == registerViewModel.Email);
+
+            var res = await _userManager.AddPasswordAsync(dbUser, registerViewModel.Password);
+
+            await _userManager.AddToRoleAsync(dbUser, UserRole.Client.GetDisplayName());
 
             return dbUser.Id;
         }

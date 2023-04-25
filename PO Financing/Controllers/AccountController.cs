@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PO_Financing.BusinessLogic;
 using PO_Financing.Data;
@@ -17,18 +19,20 @@ namespace PO_Financing.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly ApplicationDbContext _dbContext;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<AccountController> _logger;
         private readonly IUserDataManagement _usersIO;
-
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<AccountController> logger, IUserDataManagement usersIO)
+        
+        public AccountController(ApplicationDbContext dbContext,UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<AccountController> logger, IUserDataManagement usersIO)
         {
+            _dbContext = dbContext;
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _usersIO = usersIO;
-        }
+        } 
 
         public async Task<IActionResult> Login()
         {
@@ -85,6 +89,37 @@ namespace PO_Financing.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            return View();
+        }
+
+        public async Task<IActionResult> Register()
+        {
+            await _signInManager.SignOutAsync();
+            await HttpContext.SignOutAsync();
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                IDbContextTransaction transaction = _dbContext.Database.BeginTransaction();
+                try
+                {
+                    var userId = await _usersIO.CreateUser(registerViewModel);
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    _logger.LogError($"There was an error registering new account with email {registerViewModel.Email}");
+                }
+                return View();
+                //return RedirectToAction("Index", "Dashboard");
+            }
             return View();
         }
 

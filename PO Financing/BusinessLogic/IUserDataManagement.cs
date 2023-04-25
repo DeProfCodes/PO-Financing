@@ -18,6 +18,8 @@ namespace PO_Financing.BusinessLogic
 
         public Task<string> CreateUser(UserDetailsViewModel userViewModel);
 
+        public Task<string> CreateUser(RegisterViewModel userViewModel);
+
         public Task EditUser(UserDetailsViewModel userViewModel);
 
         public Task UpdateUserAccountStatus(string userId, AccountStatus accountStatus);
