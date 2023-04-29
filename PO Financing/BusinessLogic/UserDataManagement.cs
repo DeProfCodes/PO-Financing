@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PO_Financing.BusinessLogic.Interfaces;
 using PO_Financing.Data;
 using PO_Financing.Enums;
 using PO_Financing.ViewModels;
