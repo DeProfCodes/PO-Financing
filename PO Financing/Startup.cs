@@ -42,6 +42,7 @@ namespace PO_Financing
                     .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
 
             services.AddScoped<IUserDataManagement, UserDataManagement>();
+            services.AddScoped<IPurchaseOrdersManagement, PurchaseOrdersManagement>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

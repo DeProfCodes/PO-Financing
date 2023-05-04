@@ -37,81 +37,92 @@
                         </li>
                     </ul>
                     <div class="tab-content pt-2" id="borderedTabContent">
-                        <div class="tab-pane fade show active" id="bordered-personal" role="tabpanel" aria-labelledby="personal-tab">
-                            <div class="apply-info-dialog-container">
-                                <h4 class="w-100 text-center">Enter your details</h4>
-                                <div class="apply-info-dialog">
-                                    <div class="row mb-3">
-                                        <label for="inputText" class="col-sm-3 col-form-label">Firstname*</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control apply-textBox">
+                        
+                            <!-- Personal Tab -->
+                            <div class="tab-pane fade show active" id="bordered-personal" role="tabpanel" aria-labelledby="personal-tab">
+                                <div class="apply-info-dialog-container">
+                                    <h4 class="w-100 text-center">Enter your details</h4>
+                                    <div class="apply-info-dialog">
+                                        <div class="row mb-3 hidden">
+                                            <label for="inputText" class="col-sm-3 col-form-label">Firstname*</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control apply-textBox">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputText" class="col-sm-3 col-form-label">Lastname*</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control apply-textBox">
+                                        <div class="row mb-3 hidden">
+                                            <label for="inputText" class="col-sm-3 col-form-label">Lastname*</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control apply-textBox">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputText" class="col-sm-3 col-form-label">ID Number*</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control apply-textBox">
+                                        <div class="row mb-3">
+                                            <label for="inputText" class="col-sm-3 col-form-label">ID Number*</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control apply-textBox" id="idNum">
+                                                <span id="idNumValid" class="text-danger"></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputEmail" class="col-sm-3 col-form-label">Business Email</label>
-                                        <div class="col-sm-9">
-                                            <input type="email" class="form-control apply-textBox">
+                                        <div class="row mb-3">
+                                            <label for="inputEmail" class="col-sm-3 col-form-label">Business Email*</label>
+                                            <div class="col-sm-9">
+                                                <input type="email" class="form-control apply-textBox" id="bEmail">
+                                                <span id="emailValid" class="text-danger"></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputEmail" class="col-sm-3 col-form-label">Phone Number*</label>
-                                        <div class="col-sm-9">
-                                            <input type="number" class="form-control apply-textBox">
+                                        <div class="row mb-3">
+                                            <label for="inputEmail" class="col-sm-3 col-form-label">Phone Number*</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control apply-textBox" id="cell">
+                                                <span id="cellValid" class="text-danger"></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <button class="btn default-btn apply-next-btn">Next</button>
+                                        <div class="row mb-3">
+                                            <button class="btn default-btn apply-next-btn" onclick="ValidatePersonalTab()">Save</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="bordered-business" role="tabpanel" aria-labelledby="business-tab">
-                            <div class="apply-info-dialog-container">
-                                <h4 class="w-100 text-center">Enter Business Details</h4>
-                                <div class="apply-info-dialog">
-                                    <div class="row mb-3">
-                                        <label for="inputText" class="col-sm-3 col-form-label">Business Name*</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control apply-textBox">
+                            <!-- Business Tab -->
+                            <div class="tab-pane fade" id="bordered-business" role="tabpanel" aria-labelledby="business-tab">
+                                <div class="apply-info-dialog-container">
+                                    <h4 class="w-100 text-center">Enter Business Details</h4>
+                                    <div class="apply-info-dialog">
+                                        <div class="row mb-3">
+                                            <label for="inputText" class="col-sm-3 col-form-label">Business Name*</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="bName" class="form-control apply-textBox">
+                                                <span id="bNameValid" class="text-danger"></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputText" class="col-sm-3 col-form-label">Registration Number*</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control apply-textBox">
+                                        <div class="row mb-3">
+                                            <label for="inputText" class="col-sm-3 col-form-label">Registration Number*</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="regNum" class="form-control apply-textBox">
+                                                <span id="regNumValid" class="text-danger"></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputText" class="col-sm-3 col-form-label">Website</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control apply-textBox">
+                                        <div class="row mb-3">
+                                            <label for="inputText" class="col-sm-3 col-form-label">Website</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="web" class="form-control apply-textBox">
+                                                <span id="webValid" class="text-danger"></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputEmail" class="col-sm-3 col-form-label">Address</label>
-                                        <div class="col-sm-9">
-                                            <input type="email" class="form-control apply-textBox">
+                                        <div class="row mb-3">
+                                            <label class="col-sm-3 col-form-label">Address*</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="address" class="form-control apply-textBox">
+                                                <span id="addressValid" class="text-danger"></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <button class="btn default-btn apply-next-btn">Next</button>
+                                        <div class="row mb-3">
+                                            <button class="btn default-btn apply-next-btn" onclick="ValidateBusinessTab()">Save</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="bordered-poOrder" role="tabpanel" aria-labelledby="poOrder-tab">
+                            <!-- Purchase Order Tab -->
+                            <div class="tab-pane fade" id="bordered-poOrder" role="tabpanel" aria-labelledby="poOrder-tab">
                             <div class="apply-info-dialog-container">
                                 <h4 class="w-100 text-center">Purchase Order Details</h4>
                                 <div class="apply-info-dialog">
@@ -120,41 +131,48 @@
                                         <label for="floatingInput">What is purchase order for?</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                        <select class="form-select" id="poFunder" aria-label="Floating label select example">
                                             <option value="1" selected>SA Government</option>
                                             <option value="2">Large Corporation</option>
                                             <option value="3">Another Business</option>
                                             <option value="4">An Individual</option>
                                         </select>
                                         <label for="floatingSelect">Who is purchase order for</label>
+                                        <span id="poFunderValid" class="text-danger"></span>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <input type="number" class="form-control" id="contactPerson" placeholder="0123456789">
                                         <label for="floatingInput">Primary Contact Person Phone Number</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <input type="date" class="form-control" id="poIssueDate">
                                         <label for="floatingInput">Purchase Order Issue Date</label>
+                                        <span id="poIssueDateValid" class="text-danger"></span>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <input type="date" class="form-control" id="poDueDate">
                                         <label for="floatingInput">Purchase Order Due Date</label>
+                                        <span id="poDueDateValid" class="text-danger"></span>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <input type="number" class="form-control" id="poAmt" placeholder="R5000">
                                         <label for="floatingInput">Purchase Order Amount</label>
+                                        <span id="poAmtValid" class="text-danger"></span>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <input type="number" class="form-control" id="invAmt" placeholder="R3000">
                                         <label for="floatingInput">Invoice Amount</label>
+                                        <span id="invAmtValid" class="text-danger"></span>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <input type="text" class="form-control" id="poOrdNum" placeholder="789645">
                                         <label for="floatingInput">Purchase Order Number</label>
+                                        <span id="poNumValid" class="text-danger"></span>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <input type="number" class="form-control" id="goodsSupplier" placeholder="Supplier Name">
                                         <label for="floatingInput">Supplier of Goods</label>
+                                        <span id="goodsSupplierValid" class="text-danger"></span>
                                     </div>
                                     <div class="row mb-3">
                                         <button class="btn default-btn apply-next-btn">Next</button>
@@ -162,7 +180,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="bordered-documents" role="tabpanel" aria-labelledby="documents-tab">
+                            <!-- Documents Tab -->
+                            <div class="tab-pane fade" id="bordered-documents" role="tabpanel" aria-labelledby="documents-tab">
                             <div class="apply-info-dialog-container">
                                 <h4 class="w-100 text-center">Upload Documents</h4>
                                 <div class="apply-info-dialog">
@@ -196,6 +215,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                     </div><!-- End Bordered Tabs -->
                 </div>
             </div>
@@ -206,6 +226,34 @@
 <script>
 
     localStorage['currentPage'] = 'Apply';
+
+    function ValidatePersonalTab() 
+    {
+        var allValid = ValidatePersonalInfoApply();
+        if (allValid) 
+        {
+            alert("All Good unto Next Tab");
+            //Progress to next tab
+        }
+    }
+
+    function ValidateBusinessTab()
+    {
+        var allValid = ValidateBusinessInfoApply();
+        if (allValid) 
+        {
+            alert("All Good unto Next Tab");
+            //Progress to next tab
+        }
+    }
+
+    function SavePersonal()
+    {
+        var url = "@Html.Raw(@Url.Action("Apply2", "Application", new { IdNumber = "1239",BusinessEmail = "test@gmail.com",PhoneNumber = "01263" }))";
+        
+        window.location = url;
+    }
+
 
 </script>
 

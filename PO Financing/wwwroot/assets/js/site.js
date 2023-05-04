@@ -88,3 +88,83 @@ function CheckPassword(Password)
     }
     return false;
 }
+
+function ValidatePersonalInfoApply()
+{
+    var idNum =  $("#idNum").val();
+    var bEmail = $("#bEmail").val();
+    var cell = $("#cell").val();
+
+    var idRegex = /^(((\d{2}((0[13578]|1[02])(0[1-9]|[12]\d|3[01])|(0[13456789]|1[012])(0[1-9]|[12]\d|30)|02(0[1-9]|1\d|2[0-8])))|([02468][048]|[13579][26])0229))(( |-)(\d{4})( |-)(\d{3})|(\d{7}))/;
+    var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var cellRegex = /^0(1|6|7|8){1}[0-9]{1}[0-9]{7}$/;
+
+    var allValid = true;
+    if(idRegex.test(idNum) === false)
+    {
+        $("#idNumValid").text("Please supply a valid ID number");
+        allValid = false;
+    }
+    else
+    {
+        $("#idNumValid").text("");
+    }
+    if(!bEmail.match(emailRegex))
+    {
+        $("#emailValid").text("Please enter a valid email");
+        allValid = false;
+    }
+    else
+    {
+        $("#emailValid").text("");
+    }
+    if (cellRegex.test(cell) === false)
+    {
+        $("#cellValid").text("Please enter a valid email")
+        allValid  = false;
+    }
+    else
+    {
+        $("#cellValid").text("");
+    }
+    return allValid;
+}
+
+function ValidateBusinessInfoApply()
+{
+    var bName = $("#bName").val();
+    var regNum = $("#regNum").val();
+    var web = $("#web").val();
+    var address = $("#address").val();
+
+    var allValid = true;
+
+    if(bName == "")
+    {
+        $("#bNameValid").text("Please enter Business Name");
+        allValid  = false;
+    }
+    else
+    {
+         $("#bNameValid").text("");
+    }
+    if(regNum == "")
+    {
+        $("#regNumValid").text("Please enter Registration Number");
+        allValid  = false;
+    }
+    else
+    {
+        $("#regNumValid").text("");
+    }
+    if(address == "")
+    {
+        $("#addressValid").text("Please enter Registration Number");
+        allValid  = false;
+    }
+    else
+    {
+        $("#addressValid").text("");
+    }
+    return allValid;
+}

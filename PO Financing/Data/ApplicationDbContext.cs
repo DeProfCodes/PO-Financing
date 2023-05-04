@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-
+using PO_Financing.Models;
 
 namespace PO_Financing.Data
 {
@@ -40,6 +40,8 @@ namespace PO_Financing.Data
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
 
         public DbSet<ApplicationUserRole> ApplicationUserRoles { get; set; }
+
+        public DbSet<PurchaseOrderApplication> PurchaseOrderApplications { get; set; }
 
     }
 }

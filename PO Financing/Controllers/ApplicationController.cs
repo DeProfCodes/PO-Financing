@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PO_Financing.Models;
+using PO_Financing.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,6 +20,12 @@ namespace PO_Financing.Controllers
         }
 
         public IActionResult Apply()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        public IActionResult Apply2(PurchaseOrderApplicationViewModel purchaseOrderApplication)
         {
             return View();
         }
