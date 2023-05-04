@@ -11,9 +11,12 @@ namespace PO_Financing.BusinessLogic
     public class FundingApplicationHandler : IFundingApplicationHandler
     {
         private readonly IGenericRepository<PersonalDetail> _personalDetailsRepo;
-        public FundingApplicationHandler(IGenericRepository<PersonalDetail> personalDetailsRepo)
+        private readonly ApplicationDbContext _dbContext;
+
+        public FundingApplicationHandler(IGenericRepository<PersonalDetail> personalDetailsRepo, ApplicationDbContext dbContext)
         {
             _personalDetailsRepo = personalDetailsRepo;
+            _dbContext = dbContext;
         }
         public async Task<FundingApplicationViewModel> ApplyForFunding(FundingApplicationViewModel request)
         {
@@ -46,14 +49,19 @@ namespace PO_Financing.BusinessLogic
             PurchaseOrder application = new()
             {
                 PurchaseOrderReason = request.PurchaseOrderReason,
-
-            }
+                
+            };
             _personalDetailsRepo.Insert(personalDetails);
 
-
             //Save the files on the machine
-            
-            throw new System.NotImplementedException();
+            _dbContext.Add(personalDetails);
+            _dbContext.Add(address);
+            _dbContext.Add(businessDetail);
+            _dbContext.Add(application);
+
+            await _dbContext.SaveChangesAsync();
+
+            return new();
         }
     }
 }
