@@ -4,6 +4,11 @@
     color: white;
 }
 
+.curve-btn
+{
+    border-radius: 40px;
+}
+
 .login-btn:hover, .default-btn:hover
 {
     background: #3EC1D5;
@@ -35,6 +40,11 @@
 .apply-textBox
 {
     width: 80%;
+}
+
+.hidden
+{
+    display: none;
 }
 
 @media (max-width: 990px)

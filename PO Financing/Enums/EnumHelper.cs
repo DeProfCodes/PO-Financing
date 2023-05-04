@@ -8,6 +8,11 @@ namespace PO_Financing.Enums
 {
     public static class EnumHelpers
     {
+        /// <summary>
+        /// Display the name set in annotation DisplayName on top of enum value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static string GetDisplayName(this Enum value)
         {
             return value.GetType()?

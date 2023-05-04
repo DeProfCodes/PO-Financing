@@ -15,8 +15,6 @@ namespace PO_Financing.ViewModels
 
         public string Email { get; set; }
 
-        public bool ChangePassword { get; set; }
-
         public string Password { get; set; }
 
         public string PhoneNumber { get; set; }

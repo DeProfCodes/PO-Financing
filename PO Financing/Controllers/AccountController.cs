@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using PO_Financing.Helper;
 
 namespace PO_Financing.Controllers
 {
@@ -61,6 +62,7 @@ namespace PO_Financing.Controllers
                     var userRole = await _usersIO.GetUserRoleByEmail(model.Email.Trim());
                     _logger.LogInformation("User logged in.");
 
+                    //await HttpContext.SignInAsync();
                     if (userRole == UserRole.Client.GetDisplayName())
                     {
                         return RedirectToAction("Index", "Dashboard");
@@ -96,7 +98,7 @@ namespace PO_Financing.Controllers
         {
             await _signInManager.SignOutAsync();
             await HttpContext.SignOutAsync();
-
+            
             return View();
         }
 
@@ -105,6 +107,14 @@ namespace PO_Financing.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (!string.IsNullOrEmpty(registerViewModel.Password))
+                {
+                    if (!Validators.IsValidPassword(registerViewModel.Password))
+                    {
+                        ModelState.AddModelError(string.Empty, "Password must 8 or more characters, upper case, lowecase, number, special characters!");
+                        return View(registerViewModel);
+                    }
+                }
                 IDbContextTransaction transaction = _dbContext.Database.BeginTransaction();
                 try
                 {
@@ -117,10 +127,73 @@ namespace PO_Financing.Controllers
                     transaction.Rollback();
                     _logger.LogError($"There was an error registering new account with email {registerViewModel.Email}");
                 }
-                return View();
-                //return RedirectToAction("Index", "Dashboard");
+                //return View();
+                var result = await _signInManager.PasswordSignInAsync(registerViewModel.Email, registerViewModel.Password, false, lockoutOnFailure: false);
+                return RedirectToAction("Index", "Dashboard");
             }
             return View();
+        }
+
+        public async Task<IActionResult> Settings()
+        {
+            try
+            {
+                var user = await _usersIO.GetUserByEmail(User.Identity.Name);
+                var userVm = ViewModelBuilder.CreateUserViewModel(user, UserRole.Client.GetDisplayName());
+
+                return View(userVm);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return View(new UserDetailsViewModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Settings(UserDetailsViewModel userViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _usersIO.GetUserByEmail(User.Identity.Name);
+                
+                userViewModel.Id = user.Id;
+                userViewModel.Email = User.Identity.Name;
+                
+                if (!string.IsNullOrEmpty(userViewModel.Password))
+                {
+                    if (!Validators.IsValidPassword(userViewModel.Password))
+                    {
+                        ModelState.AddModelError(string.Empty, "Password must 8 or more characters, upper case, lowecase, number, special characters!");
+                        return View(userViewModel);
+                    }
+                    userViewModel.Firstname = user.Firstname;
+                    userViewModel.Lastname = user.Lastname;
+                    userViewModel.PhoneNumber = user.PhoneNumber;
+                }
+
+                IDbContextTransaction transaction = _dbContext.Database.BeginTransaction();
+                try
+                {
+                    await _usersIO.EditUser(userViewModel);
+
+                    transaction.Commit();
+
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+
+                    ModelState.AddModelError(string.Empty, e.Message);
+                    return View(userViewModel);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Error.");
+                return View(userViewModel);
+            }
         }
 
         public async Task<IActionResult> Logout()

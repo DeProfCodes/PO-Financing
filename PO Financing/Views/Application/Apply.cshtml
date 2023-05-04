@@ -6,187 +6,198 @@
 
 <div class="container">
     <section class="min-vh-100 d-flex flex-column align-items-center py-4">
-        <div class="card" style="margin-top:15%; width: 80%; margin-bottom: 70px">
-            <div class="card-body">
-                <h5 class="card-title">Please fill in the details</h5>
+        <div style="margin-top:130px; width: 80%; margin-bottom: 70px">
+            <div class="pagetitle">
+                <h1>Apply</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Apply</li>
+                    </ol>
+                </nav>
+            </div><!-- End Page Title -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Please fill in the details</h5>
 
-                <!-- Bordered Tabs -->
-                <ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#bordered-personal" type="button" role="tab" aria-controls="personal" aria-selected="true">Personal</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="business-tab" data-bs-toggle="tab" data-bs-target="#bordered-business" type="button" role="tab" aria-controls="business" aria-selected="false">Business</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="poOrder-tab" data-bs-toggle="tab" data-bs-target="#bordered-poOrder" type="button" role="tab" aria-controls="poOrder" aria-selected="false">Purchase Order</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="documents-tab" data-bs-toggle="tab" data-bs-target="#bordered-documents" type="button" role="tab" aria-controls="documents" aria-selected="false">Documents</button>
-                    </li>
-                </ul>
-                <div class="tab-content pt-2" id="borderedTabContent">
-                    <div class="tab-pane fade show active" id="bordered-personal" role="tabpanel" aria-labelledby="personal-tab">
-                        <div class="apply-info-dialog-container">
-                            <h4 class="w-100 text-center">Enter your details</h4>
-                            <div class="apply-info-dialog">
-                                <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-3 col-form-label">Firstname*</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control apply-textBox">
+                    <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#bordered-personal" type="button" role="tab" aria-controls="personal" aria-selected="true">Personal</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="business-tab" data-bs-toggle="tab" data-bs-target="#bordered-business" type="button" role="tab" aria-controls="business" aria-selected="false">Business</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="poOrder-tab" data-bs-toggle="tab" data-bs-target="#bordered-poOrder" type="button" role="tab" aria-controls="poOrder" aria-selected="false">Purchase Order</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="documents-tab" data-bs-toggle="tab" data-bs-target="#bordered-documents" type="button" role="tab" aria-controls="documents" aria-selected="false">Documents</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-2" id="borderedTabContent">
+                        <div class="tab-pane fade show active" id="bordered-personal" role="tabpanel" aria-labelledby="personal-tab">
+                            <div class="apply-info-dialog-container">
+                                <h4 class="w-100 text-center">Enter your details</h4>
+                                <div class="apply-info-dialog">
+                                    <div class="row mb-3">
+                                        <label for="inputText" class="col-sm-3 col-form-label">Firstname*</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control apply-textBox">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-3 col-form-label">Lastname*</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control apply-textBox">
+                                    <div class="row mb-3">
+                                        <label for="inputText" class="col-sm-3 col-form-label">Lastname*</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control apply-textBox">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-3 col-form-label">ID Number*</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control apply-textBox">
+                                    <div class="row mb-3">
+                                        <label for="inputText" class="col-sm-3 col-form-label">ID Number*</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control apply-textBox">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputEmail" class="col-sm-3 col-form-label">Business Email</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" class="form-control apply-textBox">
+                                    <div class="row mb-3">
+                                        <label for="inputEmail" class="col-sm-3 col-form-label">Business Email</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control apply-textBox">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputEmail" class="col-sm-3 col-form-label">Phone Number*</label>
-                                    <div class="col-sm-9">
-                                        <input type="number" class="form-control apply-textBox">
+                                    <div class="row mb-3">
+                                        <label for="inputEmail" class="col-sm-3 col-form-label">Phone Number*</label>
+                                        <div class="col-sm-9">
+                                            <input type="number" class="form-control apply-textBox">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <button class="btn default-btn apply-next-btn">Next</button>
+                                    <div class="row mb-3">
+                                        <button class="btn default-btn apply-next-btn">Next</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="bordered-business" role="tabpanel" aria-labelledby="business-tab">
-                        <div class="apply-info-dialog-container">
-                            <h4 class="w-100 text-center">Enter Business Details</h4>
-                            <div class="apply-info-dialog">
-                                <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-3 col-form-label">Business Name*</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control apply-textBox">
+                        <div class="tab-pane fade" id="bordered-business" role="tabpanel" aria-labelledby="business-tab">
+                            <div class="apply-info-dialog-container">
+                                <h4 class="w-100 text-center">Enter Business Details</h4>
+                                <div class="apply-info-dialog">
+                                    <div class="row mb-3">
+                                        <label for="inputText" class="col-sm-3 col-form-label">Business Name*</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control apply-textBox">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-3 col-form-label">Registration Number*</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control apply-textBox">
+                                    <div class="row mb-3">
+                                        <label for="inputText" class="col-sm-3 col-form-label">Registration Number*</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control apply-textBox">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-3 col-form-label">Website</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control apply-textBox">
+                                    <div class="row mb-3">
+                                        <label for="inputText" class="col-sm-3 col-form-label">Website</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control apply-textBox">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputEmail" class="col-sm-3 col-form-label">Address</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" class="form-control apply-textBox">
+                                    <div class="row mb-3">
+                                        <label for="inputEmail" class="col-sm-3 col-form-label">Address</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control apply-textBox">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <button class="btn default-btn apply-next-btn">Next</button>
+                                    <div class="row mb-3">
+                                        <button class="btn default-btn apply-next-btn">Next</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="bordered-poOrder" role="tabpanel" aria-labelledby="poOrder-tab">
-                        <div class="apply-info-dialog-container">
-                            <h4 class="w-100 text-center">Purchase Order Details</h4>
-                            <div class="apply-info-dialog">
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                    <label for="floatingInput">What is purchase order for?</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                        <option value="1" selected>SA Government</option>
-                                        <option value="2">Large Corporation</option>
-                                        <option value="3">Another Business</option>
-                                        <option value="4">An Individual</option>
-                                    </select>
-                                    <label for="floatingSelect">Who is purchase order for</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                    <label for="floatingInput">Primary Contact Person Phone Number</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                    <label for="floatingInput">Purchase Order Issue Date</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                    <label for="floatingInput">Purchase Order Due Date</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                    <label for="floatingInput">Purchase Order Amount</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                    <label for="floatingInput">Invoice Amount</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                    <label for="floatingInput">Purchase Order Number</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                    <label for="floatingInput">Supplier of Goods</label>
-                                </div>
-                                <div class="row mb-3">
-                                    <button class="btn default-btn apply-next-btn">Next</button>
+                        <div class="tab-pane fade" id="bordered-poOrder" role="tabpanel" aria-labelledby="poOrder-tab">
+                            <div class="apply-info-dialog-container">
+                                <h4 class="w-100 text-center">Purchase Order Details</h4>
+                                <div class="apply-info-dialog">
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <label for="floatingInput">What is purchase order for?</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                            <option value="1" selected>SA Government</option>
+                                            <option value="2">Large Corporation</option>
+                                            <option value="3">Another Business</option>
+                                            <option value="4">An Individual</option>
+                                        </select>
+                                        <label for="floatingSelect">Who is purchase order for</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <label for="floatingInput">Primary Contact Person Phone Number</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <label for="floatingInput">Purchase Order Issue Date</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <label for="floatingInput">Purchase Order Due Date</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <label for="floatingInput">Purchase Order Amount</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <label for="floatingInput">Invoice Amount</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <label for="floatingInput">Purchase Order Number</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                        <label for="floatingInput">Supplier of Goods</label>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <button class="btn default-btn apply-next-btn">Next</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="bordered-documents" role="tabpanel" aria-labelledby="documents-tab">
-                        <div class="apply-info-dialog-container">
-                            <h4 class="w-100 text-center">Upload Documents</h4>
-                            <div class="apply-info-dialog">
-                                <div class="row mb-3">
-                                    <label for="inputNumber" class="col-sm-5 col-form-label">Business registration document</label>
-                                    <div class="col-sm-7">
-                                        <input class="form-control" type="file" id="formFile">
+                        <div class="tab-pane fade" id="bordered-documents" role="tabpanel" aria-labelledby="documents-tab">
+                            <div class="apply-info-dialog-container">
+                                <h4 class="w-100 text-center">Upload Documents</h4>
+                                <div class="apply-info-dialog">
+                                    <div class="row mb-3">
+                                        <label for="inputNumber" class="col-sm-5 col-form-label">Business registration document</label>
+                                        <div class="col-sm-7">
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputNumber" class="col-sm-5 col-form-label">Director's ID document</label>
-                                    <div class="col-sm-7">
-                                        <input class="form-control" type="file" id="formFile">
+                                    <div class="row mb-3">
+                                        <label for="inputNumber" class="col-sm-5 col-form-label">Director's ID document</label>
+                                        <div class="col-sm-7">
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputNumber" class="col-sm-5 col-form-label">Purchase Order</label>
-                                    <div class="col-sm-7">
-                                        <input class="form-control" type="file" id="formFile">
+                                    <div class="row mb-3">
+                                        <label for="inputNumber" class="col-sm-5 col-form-label">Purchase Order</label>
+                                        <div class="col-sm-7">
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="inputNumber" class="col-sm-5 col-form-label">Quotation</label>
-                                    <div class="col-sm-7">
-                                        <input class="form-control" type="file" id="formFile">
+                                    <div class="row mb-3">
+                                        <label for="inputNumber" class="col-sm-5 col-form-label">Quotation</label>
+                                        <div class="col-sm-7">
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <button class="btn default-btn apply-next-btn">Next</button>
+                                    <div class="row mb-3">
+                                        <button class="btn default-btn apply-next-btn">Next</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div><!-- End Bordered Tabs -->
-
+                    </div><!-- End Bordered Tabs -->
+                </div>
             </div>
         </div>
     </section>

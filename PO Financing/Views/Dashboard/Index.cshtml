@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+
+<link href="../assets/css/style-admin.css" rel="stylesheet">
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="container" style="margin-top:130px; min-height:100vh; margin-left:20%; margin-right:20%">
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="row">
+            <!-- Left side columns -->
+            <div class="col-lg-8">
+                <div class="row">
+                     <!-- Sales Card -->
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card sales-card">
+
+                            <div class="filter">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li class="dropdown-header text-start">
+                                        <h6>Filter</h6>
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="card-body">
+                                <h5 class="card-title">Purchase Orders <span>| Today</span></h5>
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-cart"></i>
+                                    </div>
+                                    <div class="ps-3"> 
+                                        <h6>145</h6>
+                                       @* <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!-- End Sales Card -->
+                    <!-- Revenue Card -->
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card revenue-card">
+                            <div class="filter">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li class="dropdown-header text-start">
+                                        <h6>Filter</h6>
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Net Profit <span>| This Month</span></h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-currency-dollar"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>R3 264</h6>
+                                        @*<span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- End Revenue Card -->
+                    <!-- Interests Card -->
+                    <div class="col-xxl-4 col-xl-12">
+
+                        <div class="card info-card customers-card">
+
+                            <div class="filter">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li class="dropdown-header text-start">
+                                        <h6>Filter</h6>
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="card-body">
+                                <h5 class="card-title">Interests Paid <span>| This Year</span></h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-currency-dollar"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>R745.55</h6>
+                                        @*<span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>*@
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div><!-- End Customers Card -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Left side columns -->
+            <div class="col-lg-8">
+                <div class="row">
+                    <!-- Application Card -->
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card sales-card">
+                            <div class="card-body">
+                                <h5 class="card-title w-100 text-center">Apply for funding</h5>
+                                <div class="w-100 text-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center" style="margin-left:auto;margin-right:auto">
+                                        <i class="bx bxs-landmark"></i>
+                                    </div>
+                                </div>
+                                <div class="w-100 text-center" style="margin-top:20px">
+                                    <a class="btn default-btn curve-btn" asp-action="Apply" asp-controller="Application">apply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Purchase Orders Card -->
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card sales-card">
+                            <div class="card-body">
+                                <h5 class="card-title w-100 text-center">Purchase Orders</h5>
+                                <div class="w-100 text-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center" style="margin-left:auto;margin-right:auto">
+                                        <i class="bx bxs-spreadsheet"></i>
+                                    </div>
+                                </div>
+                                <div class="w-100 text-center" style="margin-top:20px">
+                                    <a class="btn default-btn curve-btn" asp-action="PurchaseOrders" asp-controller="Dashboard">view purchase orders</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Account Card -->
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card sales-card">
+                            <div class="card-body">
+                                <h5 class="card-title w-100 text-center">Account</h5>
+                                <div class="w-100 text-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center" style="margin-left:auto;margin-right:auto">
+                                        <i class="bx bxs-user"></i>
+                                    </div>
+                                </div>
+                                <div class="w-100 text-center" style="margin-top:20px">
+                                    <a class="btn default-btn curve-btn" asp-action="Settings" asp-controller="Account">manage</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!-- Account Card -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

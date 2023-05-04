@@ -1,0 +1,129 @@
+﻿@model PO_Financing.ViewModels.UserDetailsViewModel 
+
+@{
+    ViewData["Title"] = "Account Settings";
+}
+
+<link href="../assets/css/style-admin.css" rel="stylesheet">
+
+<div class="container">
+    <section class="min-vh-100 d-flex flex-column align-items-center py-4">
+        <div style="margin-top:130px; width: 80%; margin-bottom: 70px">
+            <div class="pagetitle">
+                <h1>Account Settings</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Account Settings</li>
+                    </ol>
+                </nav>
+            </div><!-- End Page Title -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Update Details</h5>
+                    <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#bordered-personal" type="button" role="tab" aria-controls="personal" aria-selected="true">Personal</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#bordered-password" type="button" role="tab" aria-controls="password" aria-selected="false">Change Password</button>
+                        </li>
+                    </ul>
+                    <form method="post" asp-action="Settings" onsubmit="return changePassword()">
+                        <div class="tab-content pt-2" id="borderedTabContent">
+                            <div class="tab-pane fade show active" id="bordered-personal" role="tabpanel" aria-labelledby="personal-tab">
+                                <div class="apply-info-dialog-container">
+                                    <h4 class="w-100 text-center">Update Account Details</h4>
+                                    <div class="apply-info-dialog">
+                                        <div class="row mb-3">
+                                            <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
+                                            <div class="col-sm-9">
+                                                <input type="email" class="form-control apply-textBox" value="@Model.Email" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="inputText" class="col-sm-3 col-form-label">Firstname</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control apply-textBox" asp-for="Firstname" value="@Model.Firstname">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="inputText" class="col-sm-3 col-form-label">Lastname</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control apply-textBox" asp-for="Lastname" value="@Model.Lastname">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="inputEmail" class="col-sm-3 col-form-label">Phone Number</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control apply-textBox" asp-for="PhoneNumber">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <button class="btn default-btn apply-next-btn">Save Changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade show" id="bordered-password" role="tabpanel" aria-labelledby="password-tab">
+                                <div class="apply-info-dialog-container">
+                                    <h4 class="w-100 text-center">Change Password</h4>
+                                    <div class="apply-info-dialog">
+                                        <span id="ErrorPassword" class="text-danger"></span>
+                                        <div class="row mb-3">
+                                            <label for="inputText" class="col-sm-3 col-form-label">Password</label>
+                                            <div class="col-sm-9">
+                                                <input type="password" id="Password" class="form-control apply-textBox" asp-for="Password">
+                                            </div>
+                                            <ul style="list-style-type: square;margin-left: 20px;font-size: 12px;color: gray;line-height: 1.4;">
+                                                <li>Must contain 8 or more characters</li>
+                                                <li>Must contain lower letter a-z</li>
+                                                <li>Must contain upper letter A-Z</li>
+                                                <li>Must contain a number 0-9</li>
+                                                <li>Must contain special character (like $%!^&*++=)</li>
+                                            </ul>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="inputText" class="col-sm-3 col-form-label">Confirm Password</label>
+                                            <div class="col-sm-9">
+                                                <input type="password" id="ConfirmPwd" class="form-control apply-textBox">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <button class="btn default-btn apply-next-btn" type="submit">Change Password</button>
+                                        </div>                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End Bordered Tabs -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+
+    localStorage['currentPage'] = 'Settings';
+
+    function changePassword()
+    {
+        if ($("#Password").val() != $("#ConfirmPwd").val())
+        {
+            $("#ErrorPassword").text("Passwords do not match!");
+            return false;
+        }
+        if (CheckPassword($("#Password").val()) == false)
+        {
+            $("#ErrorPassword").text("Password do not meet all the requirements");
+            return false;
+        }
+        return true;
+    }
+
+</script>
+
+<script src="../assets/js/jquery.js"></script>

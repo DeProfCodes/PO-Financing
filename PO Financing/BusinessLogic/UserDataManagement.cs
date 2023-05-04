@@ -86,16 +86,19 @@ namespace PO_Financing.BusinessLogic
             dbUser.Firstname = userViewModel.Firstname;
             dbUser.Lastname = userViewModel.Lastname;
             dbUser.PhoneNumber = userViewModel.PhoneNumber;
-            dbUser.AccountStatus = userViewModel.AccountStatus;
-
+            
+            if (userViewModel.AccountStatus != 0)
+            {
+                dbUser.AccountStatus = userViewModel.AccountStatus;
+            }
+            /*
             if (dbUser.Email.ToLower() != userViewModel.Email.Trim().ToLower())
             {
                 dbUser.Email = userViewModel.Email.Trim();
                 dbUser.NormalizedEmail = dbUser.Email.ToUpper();
                 dbUser.UserName = dbUser.Email;
                 dbUser.NormalizedUserName = dbUser.UserName.ToUpper();
-            }
-
+            }*/
             _dbContext.Update(dbUser);
 
             if (!string.IsNullOrEmpty(userViewModel.Password))

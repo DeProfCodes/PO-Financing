@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Purchase Orders";
+
+}
+
+
+<link href="../assets/css/style-admin.css" rel="stylesheet">
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="container" style="margin-top:130px; min-height:100vh;">
+    <div class="pagetitle">
+        <h1>Purchase Orders</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Dashboard">Home</a></li>
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item active">Purchase Orders</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="row">
+            <!-- Left side columns -->
+            <div class="col-lg-12">
+                <div class="row">
+                    <!-- Recent Sales -->
+                    <div class="col-12">
+                        <div class="card recent-sales overflow-auto">
+
+                            <div class="filter hidden">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li class="dropdown-header text-start">
+                                        <h6>Filter</h6>
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="card-body">
+                                <h5 class="card-title">Manage Purchase Orders</h5>
+
+                                <table class="table table-borderless datatable">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Application Date</th>
+                                            <th scope="col">Purchase Order Description</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for(int i=0; i<5; i++)
+                                        {
+                                            <tr>
+                                                <th scope="row"><a href="#">#@(i+1)</a></th>
+                                                <td>@DateTime.Now.ToString("dd-MMM-yyyy")</td>
+                                                <td><a href="#" class="text-primary">Stationary</a></td>
+                                                <td>R640</td>
+                                                <td><span class="badge bg-success">Approved</span></td>
+                                                <td><a class="btn btn-sm btn-info text-white" asp-action="PurchaseOrder" asp-controller="Dashboard">Open</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div><!-- End Recent Sales -->
+                </div>
+            </div>
+        </div>
+        
+    </section>
+</div>
