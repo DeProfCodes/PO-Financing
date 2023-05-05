@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Uploads\ID Documents\" />
+    <Folder Include="Uploads\Business Registrations\" />
+    <Folder Include="Uploads\Quotations\" />
+    <Folder Include="Uploads\Purchase Orders\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>

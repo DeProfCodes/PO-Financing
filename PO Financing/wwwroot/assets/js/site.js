@@ -168,3 +168,94 @@ function ValidateBusinessInfoApply()
     }
     return allValid;
 }
+
+function ValidatePurchaseOrderInfoApply()
+{
+    var poDesc = $("#poDesc").val();
+    var contactPerson = $("#contactPerson").val();
+    var poIssueDate = $("#poIssueDate").val();
+    var poDueDate = $("#poDueDate").val();
+    var poAmt = $("#poAmt").val();
+    var invAmt = $("#invAmt").val();
+    var poOrdNum = $("#poOrdNum").val();
+    var goodsSupplier = $("#goodsSupplier").val();
+
+    var allValid = true;
+    var today = new Date();
+
+    if(poDesc == "")
+    {
+        $("#poDescValid").text("Please enter Purcahse Order Description");
+        allValid  = false;
+    }
+    else
+    {
+         $("#poDescValid").text("");
+    }
+    if(contactPerson == "")
+    {
+        $("#contactPersonValid").text("Please enter contact person Phone number");
+        allValid  = false;
+    }
+    else
+    {
+        $("#contactPersonValid").text("");
+    }
+    if(poIssueDate > today || poIssueDate > poDueDate)
+    {
+        if(poIssueDate > today) $("#poIssueDateValid").text("Issue date cannot be on a later date than today's date");
+        if(poIssueDate > poDueDate) $("#poIssueDateValid").text("Issue date cannot be on a later date than due date");
+        allValid  = false;
+    }
+    else
+    {
+        $("#poIssueDateValid").text("");
+    }
+    if(poDueDate < today || poDueDate < poIssueDate)
+    {
+        if(poDueDate < today) $("#poDueDateValid").text("Due date cannot be on a earlier date than today's date");
+        if(poDueDate < poIssueDate) $("#poDueDateValid").text("Due date cannot be on a earlier date than Issue date");
+        allValid  = false;
+    }
+    else
+    {
+        $("#poDueDateValid").text("");
+    }
+     if(poAmt == "")
+    {
+        $("#poAmtValid").text("Please enter Purchase Order Amount");
+        allValid  = false;
+    }
+    else
+    {
+         $("#poAmtValid").text("");
+    }
+    if(invAmt == "")
+    {
+        $("#invAmtValid").text("Please enter Invoice Amount");
+        allValid  = false;
+    }
+    else
+    {
+        $("#invAmtValid").text("");
+    }
+     if(poOrdNum == "")
+    {
+        $("#poNumValid").text("Please enter Purcahse Order Number");
+        allValid  = false;
+    }
+    else
+    {
+         $("#poNumValid").text("");
+    }
+    if(goodsSupplier == "")
+    {
+        $("#goodsSupplierValid").text("Please enter goods supplier");
+        allValid  = false;
+    }
+    else
+    {
+        $("#goodsSupplierValid").text("");
+    }
+    return allValid;
+}
