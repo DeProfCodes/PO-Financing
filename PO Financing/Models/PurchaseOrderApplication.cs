@@ -34,6 +34,10 @@ namespace PO_Financing.Models
 
         public double InvoiceAmount { get; set; }
 
+        public string PurchaseOrderNumber { get; set; }
+
         public string SupplierOfGoods { get; set; }
+
+        public string Status { get; set; }
     }
 }

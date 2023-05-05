@@ -42,10 +42,14 @@ namespace PO_Financing.ViewModels
         [Required]
         public double PurchaseOrderAmount { get; set; }
 
+        public string PurchaseOrderNumber { get; set; }
+
         [Required]
         public double InvoiceAmount { get; set; }
 
         [Required]
         public string SupplierOfGoods { get; set; }
+
+        public string Status { get; set; }
     }
 }

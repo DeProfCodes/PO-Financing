@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PO_Financing.BusinessLogic;
+using PO_Financing.Helpers;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,28 +11,23 @@ namespace PO_Financing.Controllers
 {
     public class UploadsController : Controller
     {
-        private string GetFilePath(int index, string filePath)
+        private readonly IUserDataManagement _usersIO;
+        public UploadsController(IUserDataManagement usersIO)
         {
-            switch (index)
-            {
-                case 0: return $"Uploads\\Business Registrations\\{filePath}";
-                case 1: return $"Uploads\\ID Documents\\{filePath}";
-                case 2: return $"Uploads\\Purchase Orders\\{filePath}";
-                case 3: return $"Uploads\\Quotations\\{filePath}";
-                default: return string.Empty;
-            }
+            _usersIO = usersIO;
         }
 
         [HttpPost]
         public async Task<IActionResult> Upload(List<IFormFile> files)
         {
             long size = files.Sum(f => f.Length);
-            int i = 0;
+            int index = 0;
+            var userId = (await _usersIO.GetUserByEmail(User.Identity.Name)).Id;
             foreach (var formFile in files)
             {
                 if (formFile.Length > 0)
                 {
-                    var filePath = $"{Directory.GetCurrentDirectory()}\\{GetFilePath(i++, $"helloWord.pdf")}";
+                    var filePath = FilesHelper.GetFileFullPath(formFile.FileName, index++, userId);
                     using (var stream = System.IO.File.Create(filePath))
                     {
                         await formFile.CopyToAsync(stream);

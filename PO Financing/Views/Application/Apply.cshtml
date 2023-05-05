@@ -185,29 +185,33 @@
                             <div class="apply-info-dialog-container">
                                 <h4 class="w-100 text-center">Upload Documents</h4>
                                 <div class="apply-info-dialog">
-                                    <form asp-action="Upload"  asp-controller="Uploads" enctype="multipart/form-data" method="post">
+                                    <form asp-action="Upload"  asp-controller="Uploads" enctype="multipart/form-data" method="post" onsubmit="return ValidateDocumentsTab()">
                                         <div class="row mb-3">
                                             <label for="inputNumber" class="col-sm-5 col-form-label">Business registration document</label>
                                             <div class="col-sm-7">
-                                                <input class="form-control" type="file" name="files" id="businessRegistration">
+                                                <input class="form-control" type="file" name="files" id="businessRegistrationDoc">
+                                                <span id="businessRegistrationDocValid" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="inputNumber" class="col-sm-5 col-form-label">Director's ID document</label>
                                             <div class="col-sm-7">
-                                                <input class="form-control" type="file" name="files" id="directorId">
+                                                <input class="form-control" type="file" name="files" id="directorIdDoc">
+                                                <span id="directorIdDocValid" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="inputNumber" class="col-sm-5 col-form-label">Purchase Order</label>
                                             <div class="col-sm-7">
-                                                <input class="form-control" type="file" name="files" id="PoDocument">
+                                                <input class="form-control" type="file" name="files" id="PurchaseOrderDoc">
+                                                <span id="PurchaseOrderDocValid" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="inputNumber" class="col-sm-5 col-form-label">Quotation</label>
                                             <div class="col-sm-7">
-                                                <input class="form-control" type="file" name="files" id="QuoationFile">
+                                                <input class="form-control" type="file" name="files" id="QuoationDoc">
+                                                <span id="QuoationDocValid" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -234,6 +238,7 @@
         if (allValid) 
         {
             alert("All Good unto Next Tab");
+            CreateApplication();
             //Progress to next tab
         }
     }
@@ -258,36 +263,50 @@
         }
     }
 
-    function SavePersonal()
+    function ValidateDocumentsTab() 
     {
-        var url = "@Html.Raw(@Url.Action("Apply2", "Application", new { IdNumber = "1239",BusinessEmail = "test@gmail.com",PhoneNumber = "01263" }))";
+        var allValid = ValidateDocumentsApply();
+        console.log(allValid);
+        if (allValid) 
+        {
+            alert("All Good unto Next Tab");
+            return true;
+            //Progress to next tab
+        }
+        return false;
+    }
+
+    function CreateApplication()
+    {
+        var idNum =  $("#idNum").val();
+        var bEmail = $("#bEmail").val();
+        var cell = $("#cell").val();
+
+        var bName = $("#bName").val();
+        var regNum = $("#regNum").val();
+        var web = $("#web").val();
+        var address = $("#address").val();
+
+        var poDesc = $("#poDesc").val();
+        var poFunder = $("#poFunder").val();
+        var contactPerson = $("#contactPerson").val();
+        var poIssueDate = $("#poIssueDate").val();
+        var poDueDate = $("#poDueDate").val();
+        var poAmt = $("#poAmt").val();
+        var invAmt = $("#invAmt").val();
+        var poOrdNum = $("#poOrdNum").val();
+        var goodsSupplier = $("#goodsSupplier").val();
+
+        var personalArgs = "IdNumber="+idNum+"&BusinessEmail="+bEmail+"&PhoneNumber="+cell;
+        var businessArgs = "BusinessName="+bName+"&BusinessRegistrationNumber="+regNum+"&Website="+web+"&Address="+address;
+        var PoArgs = "PurchaseOrderDescription="+poDesc+"&PurchaseOrderFunder="+poFunder+"&PrimaryPersonPhoneNumber="+contactPerson+"&PurchaseOrderIssueDate="+poIssueDate+
+                    "&PurchaseOrderDueDate="+poDueDate+"&PurchaseOrderAmount="+poAmt+"&InvoiceAmount="+invAmt+"&PurchaseOrderNumber="+poOrdNum+"&SupplierOfGoods="+goodsSupplier;
+        
+        var args = personalArgs + "&" + businessArgs + "&" + PoArgs;
+        var url = "@Url.Action("Apply2", "Application")?"+args;
         
         window.location = url;
     }
-
-    async function AJAXSubmit (oFormElement) 
-    {
-        var resultElement = oFormElement.elements.namedItem("result");
-        const formData = new FormData(oFormElement);
-
-        try 
-        {
-            const response = await fetch(oFormElement.action, { method: 'POST', body: formData });
-
-            if (response.ok) 
-            {
-              window.location.href = '/';
-            }
-
-            resultElement.value = 'Result: ' + response.status + ' ' + 
-            response.statusText;
-        } 
-        catch (error) 
-        {
-            console.error('Error:', error);
-        }
-    }
-
 </script>
 
 <script src="../assets/js/jquery.js"></script>

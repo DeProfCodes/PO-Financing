@@ -259,3 +259,51 @@ function ValidatePurchaseOrderInfoApply()
     }
     return allValid;
 }
+
+function ValidateDocumentsApply()
+{
+    var bizReg = $("#businessRegistrationDoc");
+    var dirId = $("#directorIdDoc");
+    var poDoc = $("#PurchaseOrderDoc");
+    var quoDoc = $("#QuoationDoc");
+
+    var allValid  = true;
+
+    if(bizReg.get(0).files.length === 0)
+    {
+        $("#businessRegistrationDocValid").text("Please attach Business Registration Document");
+        allValid  = false;
+    }
+    else
+    {
+        $("#businessRegistrationDocValid").text("");
+    }
+    if(dirId.get(0).files.length === 0)
+    {
+        $("#directorIdDocValid").text("Please attach Director's ID Document");
+        allValid  = false;
+    }
+    else
+    {
+        $("#directorIdDocValid").text("");
+    }
+    if(poDoc.get(0).files.length === 0)
+    {
+        $("#PurchaseOrderDocValid").text("Please attach Purchase Order Document");
+        allValid  = false;
+    }
+    else
+    {
+        $("#PurchaseOrderDocValid").text("");
+    }
+    if(quoDoc.get(0).files.length === 0)
+    {
+        $("#QuoationDocValid").text("Please attach Order Quotation");
+        allValid  = false;
+    }
+    else
+    {
+        $("#QuoationDocValid").text("");
+    }
+    return allValid;
+}
