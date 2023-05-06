@@ -45,7 +45,7 @@ namespace PO_Financing.ViewModels
         public string PurchaseOrderNumber { get; set; }
 
         [Required]
-        public double InvoiceAmount { get; set; }
+        public double QuotationAmount { get; set; }
 
         [Required]
         public string SupplierOfGoods { get; set; }

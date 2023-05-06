@@ -120,11 +120,11 @@ namespace PO_Financing.Controllers
                 {
                     var userId = await _usersIO.CreateUser(registerViewModel);
 
-                    transaction.Commit();
+                    await transaction.CommitAsync();
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback();
+                    await transaction.RollbackAsync();
                     _logger.LogError($"There was an error registering new account with email {registerViewModel.Email}");
                 }
                 //return View();
@@ -177,13 +177,13 @@ namespace PO_Financing.Controllers
                 {
                     await _usersIO.EditUser(userViewModel);
 
-                    transaction.Commit();
+                    await transaction.CommitAsync();
 
                     return RedirectToAction("Index", "Dashboard");
                 }
                 catch (Exception e)
                 {
-                    transaction.Rollback();
+                    await transaction.RollbackAsync();
 
                     ModelState.AddModelError(string.Empty, e.Message);
                     return View(userViewModel);

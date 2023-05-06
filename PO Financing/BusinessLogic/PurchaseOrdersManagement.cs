@@ -1,4 +1,5 @@
 ﻿using PO_Financing.Data;
+using PO_Financing.Models;
 using System.Threading.Tasks;
 
 namespace PO_Financing.BusinessLogic
@@ -12,9 +13,10 @@ namespace PO_Financing.BusinessLogic
             _dbContext = dbContext;
         }
 
-        public async Task CreatePurchaseOrder()
+        public async Task CreatePurchaseOrderApplication(PurchaseOrderApplication application)
         {
-            
+            _dbContext.Add(application);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -43,6 +43,7 @@ namespace PO_Financing
 
             services.AddScoped<IUserDataManagement, UserDataManagement>();
             services.AddScoped<IPurchaseOrdersManagement, PurchaseOrdersManagement>();
+            services.AddScoped<IWalletManagement, WalletManagement>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

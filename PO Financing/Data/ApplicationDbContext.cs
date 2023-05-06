@@ -43,5 +43,7 @@ namespace PO_Financing.Data
 
         public DbSet<PurchaseOrderApplication> PurchaseOrderApplications { get; set; }
 
+        public DbSet<Wallet> Wallets { get; set; }
+
     }
 }
