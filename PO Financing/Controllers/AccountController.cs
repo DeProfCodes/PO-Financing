@@ -25,15 +25,16 @@ namespace PO_Financing.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<AccountController> _logger;
         private readonly IUserDataManagement _usersIO;
-        
-        public AccountController(ApplicationDbContext dbContext,UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<AccountController> logger, IUserDataManagement usersIO)
+        private readonly IWalletManagement _walletManager;
+        public AccountController(ApplicationDbContext dbContext,UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<AccountController> logger, IUserDataManagement usersIO, IWalletManagement walletManager)
         {
             _dbContext = dbContext;
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _usersIO = usersIO;
-        } 
+            _walletManager = walletManager;
+        }
 
         public async Task<IActionResult> Login()
         {
@@ -119,6 +120,7 @@ namespace PO_Financing.Controllers
                 try
                 {
                     var userId = await _usersIO.CreateUser(registerViewModel);
+                    await _walletManager.CreateUserWallet(ViewModelBuilder.CreateNewUserWallet(userId));
 
                     await transaction.CommitAsync();
                 }

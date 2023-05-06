@@ -43,9 +43,10 @@ namespace PO_Financing.Helper
                 PurchaseOrderDueDate = poaVm.PurchaseOrderDueDate,
                 PurchaseOrderAmount = poaVm.PurchaseOrderAmount,
                 PurchaseOrderNumber = poaVm.PurchaseOrderNumber,
-                InvoiceAmount = poaVm.QuotationAmount,
+                QuotationAmount = poaVm.QuotationAmount,
                 SupplierOfGoods = poaVm.SupplierOfGoods,
                 Status = poaVm.Status,
+                CreateDate = DateTime.Now
             };
 
             return application;
@@ -62,6 +63,39 @@ namespace PO_Financing.Helper
                 TotalQuotationAmount = poaVm.QuotationAmount
             };
             return walletVm;
+        }
+
+        public static Wallet CreateNewUserWallet(string userId)
+        {
+            var wallet = new Wallet
+            {
+                UserId = userId,
+                TotalInterestPaid = 0,
+                TotalPurchaseOrders = 0,
+                TotalPurchaseOrdersAmount = 0,
+                TotalQuotationAmount = 0
+            };
+
+            return wallet;
+        }
+
+        public static List<PurchaseOrderApplicationViewModel> CreateUserPurchaseOrderApplicationsViewModel(List<PurchaseOrderApplication> userPurchaseOrderApplications)
+        {
+            var userPOsVm = new List<PurchaseOrderApplicationViewModel>();
+
+            foreach (var poa in userPurchaseOrderApplications)
+            {
+                var userPo = new PurchaseOrderApplicationViewModel
+                {
+                    ApplicationDate = poa.CreateDate,
+                    PurchaseOrderDescription = poa.PurchaseOrderDescription,
+                    PurchaseOrderAmount = poa.PurchaseOrderAmount,
+                    QuotationAmount = poa.QuotationAmount,
+                    Status = poa.Status
+                };
+                userPOsVm.Add(userPo);
+            }
+            return userPOsVm;
         }
     }
 }

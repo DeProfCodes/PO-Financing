@@ -29,7 +29,7 @@ namespace PO_Financing.Controllers
             _users = users;
             _dbContext = dbContext;
             _poManager = poManager;
-            _walletManager = walletManager; 
+            _walletManager = walletManager;
         }
 
         public IActionResult Apply()
@@ -37,8 +37,7 @@ namespace PO_Financing.Controllers
             return View();
         }
 
-        //[HttpPost]
-        public async Task<bool> Apply2(PurchaseOrderApplicationViewModel purchaseOrderApplication)
+        public async Task<IActionResult> CreateApplication(PurchaseOrderApplicationViewModel purchaseOrderApplication)
         {
             IDbContextTransaction transaction = _dbContext.Database.BeginTransaction();
             try
@@ -49,19 +48,21 @@ namespace PO_Financing.Controllers
 
                 var application = ViewModelBuilder.PurchaseOrderApplicationModel(purchaseOrderApplication);
                 var userWalletVm = ViewModelBuilder.CreateUserWalletViewModel(purchaseOrderApplication);
-                
+
                 await _poManager.CreatePurchaseOrderApplication(application);
 
                 await _walletManager.UpdateUserWallet(userWalletVm);
 
                 await transaction.CommitAsync();
+
+                return Ok();
             }
             catch (Exception e)
             {
                 await transaction.RollbackAsync();
-            }
 
-            return true;
+                return BadRequest();
+            }
         }
     }
 }

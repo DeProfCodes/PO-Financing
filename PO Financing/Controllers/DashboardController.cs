@@ -14,6 +14,7 @@ using PO_Financing.Enums;
 using PO_Financing.Models;
 using PO_Financing.ViewModels;
 using PO_Financing.Helper;
+using System.Collections.Generic;
 
 namespace PO_Financing.Controllers
 {
@@ -25,14 +26,16 @@ namespace PO_Financing.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationDbContext _dbContext;
+        private readonly IPurchaseOrdersManagement _poManager;
 
-        public DashboardController(ILogger<DashboardController> logger, IUserDataManagement usersIO, ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public DashboardController(ILogger<DashboardController> logger, IUserDataManagement usersIO, ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IPurchaseOrdersManagement poManager)
         {
             _logger = logger;
             _usersIO = usersIO;
             _dbContext = dbContext;
             _signInManager = signInManager;
             _userManager = userManager;
+            _poManager = poManager; 
         }
 
         private async Task<bool> IsLoggedInUserIsAdmin()
@@ -113,12 +116,26 @@ namespace PO_Financing.Controllers
             }
         }
 
-        public async Task<IActionResult> PurchaseOrders()
+        public async Task<PurchaseOrdersViewModel> PurchaseOrders()
         {
-            return View();
-            var user = await _usersIO.GetUserByEmail(User.Identity.Name);
+            try
+            {
+                var user = await _usersIO.GetUserByEmail(User.Identity.Name);
+                var userPorders = await _poManager.GetUserPurcahseOrdersApplications(user.Id);
+
+                var userPOsApplicationsVm = ViewModelBuilder.CreateUserPurchaseOrderApplicationsViewModel(userPorders);
+
+                var POs = new PurchaseOrdersViewModel
+                {
+                    PurchaseOrderApplication = userPOsApplicationsVm
+                };
+                return POs;
+            }
+            catch (Exception e)
+            {
+                return new();
+            }
         }
-        
 
         #endregion
     }

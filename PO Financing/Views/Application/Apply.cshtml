@@ -185,7 +185,7 @@
                             <div class="apply-info-dialog-container">
                                 <h4 class="w-100 text-center">Upload Documents</h4>
                                 <div class="apply-info-dialog">
-                                    <form asp-action="Upload"  asp-controller="Uploads" enctype="multipart/form-data" method="post" onsubmit="return ValidateDocumentsTab()">
+                                    <form asp-action="Upload"  asp-controller="Uploads" enctype="multipart/form-data" method="post" id="DocumentsForm">
                                         <div class="row mb-3">
                                             <label for="inputNumber" class="col-sm-5 col-form-label">Business registration document</label>
                                             <div class="col-sm-7">
@@ -215,7 +215,7 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <button class="btn default-btn apply-next-btn" type="submit">Submit</button>
+                                            <button class="btn default-btn apply-next-btn" type="button" onclick="ValidateDocumentsTab()">Submit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -238,7 +238,6 @@
         if (allValid) 
         {
             alert("All Good unto Next Tab");
-            CreateApplication();
             //Progress to next tab
         }
     }
@@ -261,19 +260,6 @@
             alert("All Good unto Next Tab");
             //Progress to next tab
         }
-    }
-
-    function ValidateDocumentsTab() 
-    {
-        var allValid = ValidateDocumentsApply();
-        console.log(allValid);
-        if (allValid) 
-        {
-            alert("All Good unto Next Tab");
-            return true;
-            //Progress to next tab
-        }
-        return false;
     }
 
     function CreateApplication()
@@ -303,9 +289,30 @@
                     "&PurchaseOrderDueDate="+poDueDate+"&PurchaseOrderAmount="+poAmt+"&InvoiceAmount="+invAmt+"&PurchaseOrderNumber="+poOrdNum+"&SupplierOfGoods="+goodsSupplier;
         
         var args = personalArgs + "&" + businessArgs + "&" + PoArgs;
-        var url = "@Url.Action("Apply2", "Application")?"+args;
+        var url = "@Url.Action("CreateApplication", "Application")?"+args;
         
-        window.location = url;
+        $.ajax({
+            type: "GET",
+            url: url,
+            async: true,
+            success: function (data) 
+            {
+                $("#DocumentsForm").submit();
+            },
+            error: function (error) 
+            {
+                alert("Something went wrong with your application");
+            }
+        })
+    }
+
+    function ValidateDocumentsTab() 
+    {
+        var allValid = ValidateDocumentsApply();
+        if (allValid) 
+        {
+            CreateApplication();
+        }
     }
 </script>
 

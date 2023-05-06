@@ -51,5 +51,7 @@ namespace PO_Financing.ViewModels
         public string SupplierOfGoods { get; set; }
 
         public string Status { get; set; }
+
+        public DateTime ApplicationDate { get; set; }
     }
 }

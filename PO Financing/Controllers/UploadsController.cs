@@ -23,6 +23,7 @@ namespace PO_Financing.Controllers
             long size = files.Sum(f => f.Length);
             int index = 0;
             var userId = (await _usersIO.GetUserByEmail(User.Identity.Name)).Id;
+            
             foreach (var formFile in files)
             {
                 if (formFile.Length > 0)
@@ -38,7 +39,7 @@ namespace PO_Financing.Controllers
             // Process uploaded files
             // Don't rely on or trust the FileName property without validation.
 
-            return Ok(new { count = files.Count, size });
+            return RedirectToAction("Index","Dashboard");
         }
     }
 }
