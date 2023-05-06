@@ -20,7 +20,7 @@
                                 do from anywhere you are. You can do the whole process of applying and fulfilling the Purchase Order online with the help of 
                                 our best support team.
                             </p>
-                            <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Financed</a>
+                            <a asp-action="Register" asp-controller="Account" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Financed</a>
                         </div>
                     </div>
                 </div>
@@ -200,7 +200,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs=12">
                     <div class="suscribe-text text-center">
                         <h3>Welcome to our Easy Financing company</h3>
-                        <a class="sus-btn" href="#">Get A quote</a>
+                        <a class="sus-btn" asp-action="Register" asp-controller="Account">Get A quote</a>
                     </div>
                 </div>
             </div>
@@ -225,7 +225,7 @@
                             <div class="single-icon">
                                 <i class="bi bi-phone"></i>
                                 <p>
-                                    Call: +1 5589 55488 55<br>
+                                    Call: +27 73 794 2244<br>
                                     <span>Monday-Friday (9am-5pm)</span>
                                 </p>
                             </div>
@@ -237,8 +237,8 @@
                             <div class="single-icon">
                                 <i class="bi bi-envelope"></i>
                                 <p>
-                                    Email: info@example.com<br>
-                                    <span>Web: www.example.com</span>
+                                    Email: info@pnefinance.co.za<br>
+                                    <span>Web: www.pnefinance.co.za</span>
                                 </p>
                             </div>
                         </div>
@@ -249,8 +249,8 @@
                             <div class="single-icon">
                                 <i class="bi bi-geo-alt"></i>
                                 <p>
-                                    Location: A108 Adam Street<br>
-                                    <span>NY 535022, USA</span>
+                                    Location: Sandtonview Office Park<br>
+                                    <span>Conduit St, Lyme Park, Sandton, 2191</span>
                                 </p>
                             </div>
                         </div>
@@ -261,14 +261,18 @@
                     <!-- Start Google Map -->
                     <div class="col-md-6">
                         <!-- Start Map -->
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22864.11283411948!2d-73.96468908098944!3d40.630720240038435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbg!4v1540447494452" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.343877141131!2d28.00657787625845!3d-26.08769115924049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e95745d62d4c873%3A0xfa3226a02404697c!2sSandton%20View%20Office%20Park!5e0!3m2!1sen!2sza!4v1683393527756!5m2!1sen!2sza" 
+                            width="100%" height="380" 
+                            style="border:0;" allowfullscreen>
+                        </iframe>
                         <!-- End Map -->
                     </div>
                     <!-- End Google Map -->
                     <!-- Start  contact -->
                     <div class="col-md-6">
                         <div class="form contact-form">
-                            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                            <form action="../assets/forms/sendEmail.php" method="post" role="form" class="php-email-form">
                                 <div class="form-group">
                                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                                 </div>

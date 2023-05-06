@@ -132,7 +132,7 @@
                                 <ul>
                                     <li>> <a class="scrollto" href="#about" style="color:#3EC1D5">About Us</a></li>
                                     <li>> <a class="scrollto" href="#services" style="color:#3EC1D5">Services</a></li>
-                                    <li>> <a href="#" style="color:#3EC1D5">Apply</a></li>
+                                    <li>> <a asp-action="Register" asp-controller="Account" style="color:#3EC1D5">Apply</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -144,6 +144,7 @@
                                 <div>
                                     <div style="display: grid;">
                                         <a class="scrollto credits-font" href="http://www.proficientsoftwaresolutions.co.za">Proficient Software Solutions (Pty) Ltd</a>
+                                        <a class="scrollto credits-font" href="http://www.proficientsoftwaresolutions.co.za">www.proficientsoftwaresolutions.co.za</a>
                                         <a class="scrollto credits-font" href="#services">info@proficientsoftwaresolutions.co.za</a>
                                     </div>
                                     <div>
@@ -212,7 +213,7 @@
             }
             else 
             {
-                //$("#NavContainer").removeClass('justify-content-between');
+                $("#NavContainer").removeClass('justify-content-between');
 
                 $("#DashboardNav").removeClass('active');
                 $("#POsNav").removeClass('active');

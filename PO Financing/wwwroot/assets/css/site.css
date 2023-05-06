@@ -94,7 +94,11 @@
     }
     .credits-font
     {
-
+       /* font-size:13px;*/
+    }
+    #NavContainer
+    {
+        justify-content: space-between!important;
     }
 }
 

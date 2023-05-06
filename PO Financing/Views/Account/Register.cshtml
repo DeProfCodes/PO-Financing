@@ -24,7 +24,7 @@
                                 <p class="text-center small">Enter your personal details to create account</p>
                             </div>
 
-                            <form class="row g-3 needs-validation" method="post">
+                            <form class="row g-3 needs-validation" method="post" onsubmit="return ValidatePassword()">
                                 <div asp-validation-summary="All" class="text-danger"></div>
                                 <div class="col-12">
                                     <label for="yourName" class="form-label">Firstname</label>
@@ -37,7 +37,7 @@
                                     <span asp-validation-for="Lastname" class="text-danger"></span>
                                 </div>
                                 <div class="col-12">
-                                    <label for="yourEmail" class="form-label">Your Email</label>
+                                    <label for="yourEmail" class="form-label">Email</label>
                                     <input type="email" asp-for="Email" class="form-control" required>
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="yourPassword" class="form-label">Password</label>
-                                    <input type="password" asp-for="Password" class="form-control" required>
+                                    <input type="password" asp-for="Password" class="form-control" required id="Password">
                                     <ul style="list-style-type: square;margin-left: 20px;font-size: 12px;color: gray;line-height: 1.4;">
                                         <li>Must contain 8 or more characters</li>
                                         <li>Must contain lower letter a-z</li>
@@ -56,7 +56,7 @@
                                         <li>Must contain a number 0-9</li>
                                         <li>Must contain special character (like $%!^&*++=)</li>
                                     </ul>
-                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                    <span asp-validation-for="Password" class="text-danger" id="validPass"></span>
                                 </div>
                                 <div class="col-12">
                                     <label for="yourPassword" class="form-label">Confirm Password</label>
@@ -89,6 +89,16 @@
 <script>
 
     localStorage['currentPage'] = 'Register';
+
+    function ValidatePassword() 
+    {
+        var validPass = CheckPassword($("#Password").val());
+        if (validPass == false) 
+        {
+            $("#validPass").text('The password must match all the requirements above');
+        }
+        return validPass;
+    }
 
 </script>
 
