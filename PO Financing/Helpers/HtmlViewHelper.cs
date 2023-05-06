@@ -7,7 +7,7 @@ namespace PO_Financing.Helpers
         public static string GetStatusBgColor(string status)
         {
             if (status == PurchaseOrderStatus.Pending.GetDisplayName() || status == PurchaseOrderStatus.PendingDocuments.GetDisplayName())
-                return "bg-wanring";
+                return "bg-warning";
 
             if (status == PurchaseOrderStatus.Rejected.GetDisplayName())
                 return "bg-danger";

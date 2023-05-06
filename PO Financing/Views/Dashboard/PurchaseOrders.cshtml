@@ -65,10 +65,10 @@
                                                 <th scope="row"><a href="#">#@(++count)</a></th>
                                                 <td>@PO.ApplicationDate.ToString("dd-MMM-yyyy")</td>
                                                 <td><a href="#" class="text-primary">@PO.PurchaseOrderDescription</a></td>
-                                                <td>@PO.PurchaseOrderAmount</td>
-                                                <td>@PO.QuotationAmount</td>
+                                                <td>R @PO.PurchaseOrderAmount</td>
+                                                <td>R @PO.QuotationAmount</td>
                                                 <td><span class="badge @statusColor">@PO.Status</span></td>
-                                                <td><a class="btn btn-sm btn-info text-white" asp-action="PurchaseOrder" asp-controller="Dashboard">Open</a></td>
+                                                <td><a class="btn btn-sm btn-info text-white hidden" asp-action="PurchaseOrder" asp-controller="Dashboard">Open</a></td>
                                             </tr>
                                         }
                                     </tbody>
@@ -84,3 +84,12 @@
         
     </section>
 </div>
+
+<script src="../assets/js/jquery.js"></script>
+
+<script>
+    
+    localStorage['currentPage'] = 'Purchase Orders';
+
+</script>
+

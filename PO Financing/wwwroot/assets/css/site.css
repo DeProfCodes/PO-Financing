@@ -47,6 +47,30 @@
     display: none;
 }
 
+.dashboardContainer
+{
+    margin-top:130px; 
+    min-height:100vh; 
+    margin-left:20%; 
+    margin-right:20%;
+}
+
+.profSoftwaresLogo
+{
+    width:160px;
+    height: 50px;
+    cursor: pointer;
+    margin-top:15px;
+}
+
+.credits-font
+{
+    color:#3EC1D5;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
 @media (max-width: 990px)
 {
     .apply-info-dialog
@@ -55,6 +79,22 @@
         margin-left: auto;
         margin-right: auto;
         margin-top: 50px;
+    }
+    .nav-link-login, .nav-link-register, .nav-link-apply
+    {
+        background: none !important;
+        border: none !important;
+        padding: 10px 20px !important;
+        margin: 10px;
+    }
+    .dashboardContainer
+    {
+        margin-left:auto; 
+        margin-right:auto;
+    }
+    .credits-font
+    {
+
     }
 }
 

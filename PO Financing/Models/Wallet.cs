@@ -12,6 +12,8 @@
 
         public double TotalInterestPaid { get; set; }   
 
-        public int TotalPurchaseOrders {get; set; } 
+        public int TotalPurchaseOrders {get; set; }
+
+        public double NetProfit { get; set; }
     }
 }

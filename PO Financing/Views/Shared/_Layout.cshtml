@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using PO_Financing.Enums
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -36,7 +37,7 @@
 <body>
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center">
-        <div class="container d-flex justify-content-between">
+        <div class="container d-flex justify-content-between" id="NavContainer">
 
             <div class="logo">
                 <img src="../assets/img/Logo.png" style="width:120px; max-height:50px;height:50px; cursor:pointer" onclick="NavigateTo('Home')"/>
@@ -46,14 +47,24 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link nav-link-default scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link nav-link-default scrollto" href="#about">About</a></li>
-                    <li><a class="nav-link nav-link-default scrollto" href="#services">Services</a></li>
-                    <li><a class="nav-link nav-link-default scrollto" href="#contact">Contact</a></li>
-                    <li><a class="nav-link nav-link-default scrollto" asp-action="Index" asp-controller="Dashboard">Test</a></li>
-                    <li><a class="nav-link scrollto nav-link-login" asp-action="Login" asp-controller="Account" id="loginNav">Login</a></li>
-                    <li><a class="nav-link scrollto nav-link-register" asp-action="Register" asp-controller="Account" id="registerNav">Register</a></li>
-                    <li><a class="nav-link scrollto nav-link-apply" asp-action="Apply" asp-controller="Application">Apply</a></li>
+                    @if (User.IsInRole(UserRole.Admin.GetDisplayName()) || User.IsInRole(UserRole.Client.GetDisplayName()))
+                    {
+                        <li><a class="nav-link nav-link-default" id="DashboardNav" asp-action="Index" asp-controller="Dashboard">Dashboard</a></li>
+                        <li><a class="nav-link nav-link-default" id="POsNav" asp-action="PurchaseOrders" asp-controller="Dashboard">Purchase Orders</a></li>
+                        <li><a class="nav-link nav-link-default" id="AccSettingsNav" asp-action="Settings" asp-controller="Account">Account Settings</a></li>
+                        <li><a class="nav-link nav-link-default" id="ApplyNav2" asp-action="Apply" asp-controller="Application">Apply</a></li>
+                        <li><a class="nav-link nav-link-default" id="LogoutNav" asp-action="Logout" asp-controller="Account">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li><a class="nav-link nav-link-default scrollto active" href="#hero">Home</a></li>
+                        <li><a class="nav-link nav-link-default scrollto" href="#about">About</a></li>
+                        <li><a class="nav-link nav-link-default scrollto" href="#services">Services</a></li>
+                        <li><a class="nav-link nav-link-default scrollto" href="#contact">Contact</a></li>
+                        <li><a class="nav-link scrollto nav-link-login" asp-action="Login" asp-controller="Account" id="loginNav">Login</a></li>
+                        <li><a class="nav-link scrollto nav-link-register" asp-action="Register" asp-controller="Account" id="registerNav">Register</a></li>
+                        <li><a class="nav-link scrollto nav-link-apply" asp-action="Apply" asp-controller="Application" id="applyNav">Apply</a></li>
+                    }
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -70,14 +81,14 @@
         <div class="footer-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="footer-content">
                             <div class="footer-head">
                                 <div class="footer-logo">
                                     <h2><span style="color:#61B834;">P & E</span><span style="color:dodgerblue"> Finance</span></h2>
                                 </div>
 
-                                <p>A company you can trust to assist you with your Purchase Order Financing. </p>
+                                <p style="color:white !important">A company you can trust to assist you with your Purchase Order Financing. </p>
                                 <div class="footer-icons">
                                     <ul>
                                         @*<li>
@@ -90,7 +101,7 @@
                                             <a href="#"><i class="bi bi-instagram"></i></a>
                                         </li>*@
                                         <li>
-                                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                                            <a href="#" style="color:white; border-color:white"><i class="bi bi-linkedin"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -98,31 +109,47 @@
                         </div>
                     </div>
                     <!-- end single footer -->
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="footer-content">
                             <div class="footer-head">
-                                <h4>Get In touch</h4>
-                                <p>
+                                <h4 style="color:white">Get In touch</h4>
+                                <p style="color:white">
                                     Talk to our experts about your next Purchase Order Funding
                                 </p>
                                 <div class="footer-contacts">
-                                    <p><span>Tel:</span> +123 456 789</p>
-                                    <p><span>Email:</span> contact@example.com</p>
-                                    <p><span>Working Hours:</span> 9am-5pm</p>
+                                    <p><span>Tel:</span> <span style="color:white !important">+27 73 794 2244</span></p>
+                                    <p><span>Email:</span><span style="color:white !important"> info@pnefinance.co.za</span></p>
+                                    <p><span>Working Hours:</span> <span style="color:white !important">9am-5pm</span></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- end single footer -->
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="footer-content">
                             <div class="footer-head">
-                                <h4>Userful Links</h4>
+                                <h4 style="color:white">Userful Links</h4>
                                 <ul>
                                     <li>> <a class="scrollto" href="#about" style="color:#3EC1D5">About Us</a></li>
                                     <li>> <a class="scrollto" href="#services" style="color:#3EC1D5">Services</a></li>
                                     <li>> <a href="#" style="color:#3EC1D5">Apply</a></li>
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="footer-content">
+                            <div class="footer-head">
+                                <h4 style="color:white">Website Architech</h4>
+                                <div>
+                                    <div style="display: grid;">
+                                        <a class="scrollto credits-font" href="http://www.proficientsoftwaresolutions.co.za">Proficient Software Solutions (Pty) Ltd</a>
+                                        <a class="scrollto credits-font" href="#services">info@proficientsoftwaresolutions.co.za</a>
+                                    </div>
+                                    <div>
+                                        <img src="../Assets/img/ProfSoftwares.png" class="profSoftwaresLogo" onclick="window.location='http://www.proficientsoftwaresolutions.co.za'"/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -134,7 +161,7 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="copyright text-center">
-                            <p>
+                            <p style="color:white">
                                 &copy; Copyright <strong>P & E Finance</strong>. All Rights Reserved
                             </p>
                         </div>
@@ -154,25 +181,53 @@
 
         function Boot()
         {
-            if (localStorage['currentPage'] == 'Login' || localStorage['currentPage'] == 'Register' || localStorage['currentPage'] == 'Apply')
+            var loggedUser = '@User.Identity.Name';
+            console.log(loggedUser);
+            if (loggedUser == '') 
             {
-                $(".nav-link-default").hide();
-                $(".footer-area").hide();
-                $("#header").addClass('login-header');
-                $(".footer-area-bottom").css("margin-top","-55px");
+                //$("#NavContainer").addClass('justify-content-between');
+                if (localStorage['currentPage'] == 'Login' || localStorage['currentPage'] == 'Register')
+                {
+                    $(".nav-link-default").hide();
+                    $(".footer-area").hide();
+                    $("#header").addClass('login-header');
+                    $(".footer-area-bottom").css("margin-top","-55px");
 
-                if (localStorage['currentPage'] == 'Login')
-                    $("#loginNav").hide();
-
-                if (localStorage['currentPage'] == 'Register')
-                    $("#registerNav").hide();
+                    if (localStorage['currentPage'] == 'Login')
+                    {
+                        $("#loginNav").hide();
+                        $("#applyNav").hide();
+                        $("#registerNav").hide();
+                    }
+                    if (localStorage['currentPage'] == 'Register')
+                        $("#registerNav").hide();
+                }
+                else if (localStorage['currentPage'] == 'Home')
+                {
+                    $(".nav-link-default").show();
+                    $(".footer-area").show();
+                    $("#header").removeClass('login-header');
+                    $(".footer-area-bottom").css("margin-top", "0");
+                }
             }
-            else if (localStorage['currentPage'] == 'Home')
+            else 
             {
-                $(".nav-link-default").show();
-                $(".footer-area").show();
-                $("#header").removeClass('login-header');
-                $(".footer-area-bottom").css("margin-top", "0");
+                //$("#NavContainer").removeClass('justify-content-between');
+
+                $("#DashboardNav").removeClass('active');
+                $("#POsNav").removeClass('active');
+                $("#AccSettingsNav").removeClass('active');
+                $("#ApplyNav2").removeClass('active');
+
+                var activeLink = $("#DashboardNav");
+
+                if(localStorage['currentPage'] == 'Dashboard') activeLink = $("#DashboardNav");
+                if(localStorage['currentPage'] == 'Purchase Orders') activeLink = $("#POsNav");
+                if(localStorage['currentPage'] == 'Account Settings') activeLink = $("#AccSettingsNav");
+                if(localStorage['currentPage'] == 'Apply') activeLink = $("#ApplyNav2");
+
+                activeLink.addClass('active');
+                activeLink.addClass('fw-bold');
             }
         }
 

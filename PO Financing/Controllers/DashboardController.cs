@@ -18,7 +18,7 @@ using System.Collections.Generic;
 
 namespace PO_Financing.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class DashboardController : Controller
     {
         private readonly ILogger<DashboardController> _logger;
@@ -27,15 +27,17 @@ namespace PO_Financing.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationDbContext _dbContext;
         private readonly IPurchaseOrdersManagement _poManager;
+        private readonly IWalletManagement _walletManager;
 
-        public DashboardController(ILogger<DashboardController> logger, IUserDataManagement usersIO, ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IPurchaseOrdersManagement poManager)
+        public DashboardController(ILogger<DashboardController> logger, IUserDataManagement usersIO, ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IPurchaseOrdersManagement poManager, IWalletManagement walletManager)
         {
             _logger = logger;
             _usersIO = usersIO;
             _dbContext = dbContext;
             _signInManager = signInManager;
             _userManager = userManager;
-            _poManager = poManager; 
+            _poManager = poManager;
+            _walletManager = walletManager;
         }
 
         private async Task<bool> IsLoggedInUserIsAdmin()
@@ -95,15 +97,17 @@ namespace PO_Financing.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View();
             try
             {
                 var user = await _usersIO.GetUserByEmail(User.Identity.Name);
                 var userRole = await _usersIO.GetUserRole(user.Id);
+                var userWallet = await _walletManager.GetUserWallet(user.Id);
 
                 if (userRole == UserRole.Client.GetDisplayName())
                 {
-                    return View();
+                    var dashboardVm = ViewModelBuilder.CreateDashboardViewModel(userWallet);
+
+                    return View(dashboardVm);
                 }
                 else
                 {
@@ -116,7 +120,7 @@ namespace PO_Financing.Controllers
             }
         }
 
-        public async Task<PurchaseOrdersViewModel> PurchaseOrders()
+        public async Task<IActionResult> PurchaseOrders()
         {
             try
             {
@@ -129,11 +133,11 @@ namespace PO_Financing.Controllers
                 {
                     PurchaseOrderApplication = userPOsApplicationsVm
                 };
-                return POs;
+                return View(POs);
             }
             catch (Exception e)
             {
-                return new();
+                return View(new PurchaseOrdersViewModel());
             }
         }
 

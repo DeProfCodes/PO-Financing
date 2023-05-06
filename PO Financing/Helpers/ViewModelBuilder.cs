@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using PO_Financing.Data;
 using PO_Financing.Helpers;
+using System.Globalization;
 
 namespace PO_Financing.Helper
 {
@@ -57,7 +58,7 @@ namespace PO_Financing.Helper
             var walletVm = new WalletViewModel
             {
                 UserId = poaVm.UserId,
-                TotalInterestPaid = Constants.Charges.Interests,
+                TotalInterestPaid = 0,//Constants.Charges.Interests,
                 TotalPurchaseOrders = 1,
                 TotalPurchaseOrdersAmount = poaVm.PurchaseOrderAmount,
                 TotalQuotationAmount = poaVm.QuotationAmount
@@ -73,7 +74,8 @@ namespace PO_Financing.Helper
                 TotalInterestPaid = 0,
                 TotalPurchaseOrders = 0,
                 TotalPurchaseOrdersAmount = 0,
-                TotalQuotationAmount = 0
+                TotalQuotationAmount = 0,
+                NetProfit = 0
             };
 
             return wallet;
@@ -96,6 +98,21 @@ namespace PO_Financing.Helper
                 userPOsVm.Add(userPo);
             }
             return userPOsVm;
+        }
+
+        public static DashboardViewModel CreateDashboardViewModel(Wallet userWallet)
+        {
+            var nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+            nfi.NumberGroupSeparator = " ";
+
+            var dashboardVm = new DashboardViewModel
+            {
+                InterestPaid = $"R{userWallet.TotalInterestPaid.ToString("#,0.00", nfi)}",
+                NetProfit = $"R{userWallet.NetProfit.ToString("#,0.00", nfi)}",
+                PurchaseOrdersCount = userWallet.TotalPurchaseOrders
+            };
+
+            return dashboardVm;
         }
     }
 }

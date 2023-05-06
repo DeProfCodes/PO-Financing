@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace PO_Financing.Controllers
 {
+    
     public class ApplicationController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -34,6 +35,10 @@ namespace PO_Financing.Controllers
 
         public IActionResult Apply()
         {
+            if (User.Identity.Name == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 

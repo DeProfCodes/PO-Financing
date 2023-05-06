@@ -2166,9 +2166,11 @@ span.email-notes {
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
-.footer-area {
+.footer-area 
+{
   padding: 40px 0;
-  background: #f9f9f9;
+  background: rgba(0, 0, 0, 0.8)/*#f9f9f9*/;
+  color: white;  
 }
 
 .footer-head p {
@@ -2272,7 +2274,8 @@ span.email-notes {
 }
 
 .footer-area-bottom {
-  background: #f1f1f1 none repeat scroll 0 0;
+  /*background: #f1f1f1 none repeat scroll 0 0;*/
+  background: rgba(0, 0, 0, 0.5);
   padding: 15px 0;
 }
 
