@@ -283,14 +283,14 @@
                                     <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
                                 </div>
                                 <div class="form-group mt-3">
-                                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required id="message"></textarea>
                                 </div>
                                 <div class="my-3">
                                     <div class="loading">Loading</div>
                                     <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                                    <div class="sent-message" id="successMsg">Your message has been sent. Thank you!</div>
                                 </div>
-                                <div class="text-center"><button type="submit">Send Message</button></div>
+                                <div class="text-center"><button class="sendMsgBtn" type="button" onclick="submitContactUs()">Send Message</button></div>
                             </form>
                         </div>
                     </div>
@@ -306,6 +306,24 @@
 
     localStorage['currentPage'] = 'Home';
     
+    function submitContactUs() 
+    {
+        var error = "";
+        if ($("#name").val() == "") error = "Please enter your name\n";
+        if ($("#email").val() == "") error += "Please enter your email\n";
+        if ($("#subject").val() == "") error += "Please enter subject\n";
+        if ($("#message").val() == "") error += "Please enter your message";
+        
+        if (error != "") 
+        {
+            alert(error);
+        }
+        else 
+        {
+            $("#successMsg").show();
+        }
+        return false;
+    }
 </script>
 
 <script src="../assets/js/jquery.js"></script>
